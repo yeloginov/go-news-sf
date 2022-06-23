@@ -1,8 +1,8 @@
 package api
 
 import (
-	"GoNews/pkg/storage"
 	"encoding/json"
+	"gonews/pkg/storage"
 	"net/http"
 
 	"github.com/gorilla/mux"

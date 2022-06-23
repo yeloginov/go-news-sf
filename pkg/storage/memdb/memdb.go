@@ -1,6 +1,8 @@
 package memdb
 
-import "GoNews/pkg/storage"
+import (
+	"gonews/pkg/storage"
+)
 
 // Хранилище данных.
 type Store struct{}
@@ -14,7 +16,8 @@ func (s *Store) Posts() ([]storage.Post, error) {
 	return posts, nil
 }
 
-func (s *Store) AddPost(storage.Post) error {
+func (s *Store) AddPost(p storage.Post) error {
+	posts = append(posts, p)
 	return nil
 }
 func (s *Store) UpdatePost(storage.Post) error {
