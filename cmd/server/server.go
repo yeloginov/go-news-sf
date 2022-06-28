@@ -5,10 +5,9 @@
 package main
 
 import (
-	"fmt"
 	"gonews/pkg/api"
 	"gonews/pkg/storage"
-	"gonews/pkg/storage/postgres"
+	"gonews/pkg/storage/mongodb"
 	"log"
 	"net/http"
 )
@@ -38,7 +37,7 @@ func main() {
 	//db := memdb.New()
 
 	// Реляционная БД PostgreSQL.
-	db, err := postgres.New(fmt.Sprintf("postgres://%s:%s@%s:%s/%s", DBUser, DBPassword, DBHost, DBPort, DBName))
+	/* db, err := postgres.New(fmt.Sprintf("postgres://%s:%s@%s:%s/%s", DBUser, DBPassword, DBHost, DBPort, DBName))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -47,14 +46,14 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	/*	// Документная БД MongoDB.
-		db3, err := mongo.New("mongodb://server.domain:27017/")
-		if err != nil {
-			log.Fatal(err)
-		}
-		_, _ = db2, db3
 	*/
+	// Документная БД MongoDB.
+	db, err := mongodb.New("mongodb://server.domain:27017/")
+	if err != nil {
+		log.Fatal(err)
+	}
+	// Закрываем подключение клиента при завершении программы
+	defer db.Close()
 
 	// Инициализируем хранилище сервера конкретной БД.
 	srv.db = db
