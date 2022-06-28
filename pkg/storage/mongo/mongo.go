@@ -6,3 +6,5 @@
 // Реализует CRUD-операции с хранилищем на основе MongoDB
 
 package mongo
+
+// in progress...
